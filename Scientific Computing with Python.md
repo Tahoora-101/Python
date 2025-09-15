@@ -69,3 +69,44 @@ print(greet)  # 'greet' is the argument passed to print()
 - Arguments are placed inside the function's parentheses ()
 - You can pass variables (like greet) or direct values (like "Hello!")
 - The function uses the argument to perform its task
+
+---
+
+## String Indexing
+
+**Definition:**  
+Each character in a string has a numerical index starting from 0. You can access individual characters using these indexes.
+
+**Example:**
+```python
+text = "Hello World"
+print(text[0])  # Output: 'H'
+print(text[1])  # Output: 'e'
+print(text[6])  # Output: 'W'
+```
+
+**Key Points:**
+- Indexing starts at 0 (not 1)
+- Use square brackets [] with the index number inside
+- Access any character by its position number
+- Spaces and symbols also have indexes
+
+---
+
+## Negative Indexing
+
+**Definition:**  
+You can access characters from the end of a string using negative indexes. The last character is -1, second last is -2, etc.
+
+**Example:**
+```python
+text = "Hello World"
+print(text[-1])  # Output: 'd'
+print(text[-2])  # Output: 'l'
+print(text[-5])  # Output: 'W'
+```
+**Key Points:**
+- Negative indexes start from -1 (last character)
+- Use the same square brackets [] with negative numbers
+- Example: variable_name[-1] accesses the last character
+- Useful for getting characters from the end without knowing the length
