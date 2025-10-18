@@ -1,4 +1,4 @@
-# Python Basics
+# String Manipulation by Building a Cipher
 
 ## Step 1: Variables
 
