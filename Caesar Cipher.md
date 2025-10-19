@@ -371,7 +371,6 @@ print(shifted)                                  # h
 
 ---
 
-
 ## CURRENT STATUS:
 We've built the first half: **Letter → Position → Letter**
 Next up: **Actually shifting the position!**
@@ -385,6 +384,43 @@ Every encryption system needs reliable ways to:
 **You've built the foundation - now comes the encryption!**
 
 ---
+
+## Step 21: Applying the Shift
+
+**Definition:**  
+Add the shift value to the position to get the encrypted character position.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+index = alphabet.find(text[0].lower())
+print(index)                                     # 7
+shifted = alphabet[index + shift]
+print(shifted)                                   # k
+```
+**Key Points:**
+- index + shift = 7 + 3 = 10
+- alphabet[10] = 'k'
+- First actual encryption: 'h' → 'k'
+- This is the core of Caesar cipher - shifting positions
+
+---
+
+## Step 22: Preparing for Loops
+
+**Definition:**  
+Clearing the code to prepare for implementing loops that will process all characters automatically.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+```
+---
+
 
 
 
