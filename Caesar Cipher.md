@@ -239,8 +239,8 @@ Begin implementing the Caesar cipher by finding the alphabet position of the fir
 text = 'Hello World'
 shift = 3
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
-position = alphabet.find(text[0])  # Finds position of 'H'
-print(position)  # Output: -1
+position = alphabet.find(text[0])              # Finds position of 'H'
+print(position)                                # Output: -1
 ```
 **Key Points:**
 - text[0] gets the first character of your message
