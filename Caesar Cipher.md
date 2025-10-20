@@ -419,7 +419,238 @@ text = 'Hello World'
 shift = 3
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 ```
+
 ---
+
+## Step 23: Implementing For Loop
+
+**Definition:**  
+Creating a for loop to iterate through each character in the text string.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+for i in text:
+```
+**Key Points:**
+- Loop will execute for each character in text
+- i contains the current character during each iteration
+- The colon : indicates the start of the loop body
+- Next steps will add indented code to process each character
+
+---
+
+## Step 24: Adding Loop Body
+
+**Definition:**  
+Adding indented code inside the loop to execute for each character.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+for i in text:
+    print(i)
+```
+```python
+Output
+H
+e
+l
+l
+o
+
+W
+o
+r
+l
+d
+```
+**Key Points:**
+- Indented code (4 spaces) runs for each character
+- print(i) executes 11 times (once per character)
+- Without proper indentation: IndentationError
+- The space in "Hello World" is also processed as a character
+
+---
+
+## Step 25: Meaningful Variable Names
+
+**Definition:**  
+Renaming the loop variable to something more descriptive than `i`.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+for char in text:
+    print(char)
+```
+```python
+Output
+H
+e
+l
+l
+o
+
+W
+o
+r
+l
+d
+```
+**Key Points:**
+- char is more meaningful than i (clearly means "character")
+- Variable names should describe what they contain
+- Better readability and understanding
+- Same functionality, clearer code
+
+---
+
+## Step 26: Finding Character Positions in Loop
+
+**Definition:**  
+Inside the loop, find the alphabet position of each character before printing.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+for char in text:
+    index = alphabet.find(char)
+    print(char)
+```
+```python
+H
+e
+l
+l
+o
+
+W
+o
+r
+l
+d
+```
+**Key Points:**
+- index = alphabet.find(char) finds position of current character
+- Runs for each character in the loop
+- Currently not using the index value yet
+- index will be -1 for spaces and uppercase letters
+
+---
+
+## Step 27: Printing Character and Position
+
+**Definition:**  
+Using `print()` with multiple arguments to display both the character and its alphabet position.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+for char in text:
+    index = alphabet.find(char)
+    print(char, index)
+```
+```python
+Output
+H -1
+e 4
+l 11
+l 11
+o 14
+  -1
+W -1
+o 14
+r 17
+l 11
+d 3
+```
+**Key Points:**
+- print() can take multiple arguments separated by commas
+- Shows character and its position together
+- -1 means character not found in alphabet (uppercase, spaces)
+- Confirms we need to handle case sensitivity
+
+---
+
+## Step 28: Handling Uppercase Letters
+
+**Definition:**  
+Converting the entire text to lowercase before processing to handle uppercase letters.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+for char in text.lower():
+    index = alphabet.find(char)
+    print(char, index)
+```
+```python
+h 7
+e 4
+l 11
+l 11
+o 14
+  -1
+w 22
+o 14
+r 17
+l 11
+d 3
+```
+**Key Points:**
+- text.lower() converts entire string to lowercase first
+- Now 'h'=7, 'w'=22 (no more -1 for uppercase)
+- Space still returns -1 (will handle later)
+- All letters now found in alphabet correctly
+
+---
+
+## Step 29: Calculating Shifted Position
+
+**Definition:**  
+Creating a new variable to store the shifted position (current position + shift value).
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+for char in text.lower():
+    index = alphabet.find(char)
+    print(char, index)
+    new_index = index + shift
+```
+**Key Points:**
+- new_index = index + shift calculates the encrypted position
+- For 'h' (index 7): 7 + 3 = 10
+- For 'e' (index 4): 4 + 3 = 7
+- Not printing new_index yet - just calculating it
+- This is the core encryption step
+
+---
+
+
+
+
 
 
 
