@@ -648,6 +648,73 @@ for char in text.lower():
 
 ---
 
+## Step 30: String Immutability
+
+**Definition:**  
+Strings cannot be modified once created - they are immutable.
+
+**Example:**
+```python
+text = 'Hello World'
+text[0] = 'r'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+for char in text.lower():
+    index = alphabet.find(char)
+    print(char, index)
+    new_index = index + shift
+```
+```python
+TypeError: 'str' object does not support item assignment
+```
+**Key Points:**
+- Strings are immutable (cannot change characters directly)
+- text[0] = 'r' causes TypeError
+- To "change" a string, you must create a new one
+- This is why we build encrypted text piece by piece rather than modifying original
+
+---
+
+## Step 31: Fixing the Code & New Text
+
+**Definition:**  
+Removing the invalid string modification and assigning a new string value to the text variable.
+
+**Example:**
+```python
+text = 'Albatross'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+for char in text.lower():
+    index = alphabet.find(char)
+    print(char, index)
+    new_index = index + shift# Step 31: Fixing the Code & New Text
+```
+```python
+a 0
+l 11
+b 1
+a 0
+t 19
+r 17
+o 14
+s 18
+s 18
+```
+**Key Points:**
+- Removed text[0] = 'r' (invalid string modification)
+- Assigned new string 'Albatross' to text variable
+- All characters now found in alphabet (no -1 values)
+- new_index calculated but not used yet
+
+---
+
+
+
+
+
 
 
 
