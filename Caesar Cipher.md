@@ -822,12 +822,397 @@ g
 
 ---
 
+## Step 35: Cleaning Output Format
 
+**Definition:**  
+Improving output readability by labeling the original and encrypted characters.
 
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
+for char in text.lower():
+    index = alphabet.find(char)
+    new_index = index + shift
+    new_char = alphabet[new_index]
+    print('char:', char, 'new char:', new_char)
+```
+```
+char: h new char: k
+char: e new char: h  
+char: l new char: o
+char: l new char: o
+char: o new char: r
+...
+```
+**Key Points:**
+- Clear labels show transformation: 'char: h new char: k'
+- Easier to understand the encryption process
+- Still need to handle the space character error
+- Better debugging and visualization
 
+---
 
+## Step 36: Initializing Encrypted Text
 
+**Definition:**  
+Creating an empty string variable to store the final encrypted message.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    index = alphabet.find(char)
+    new_index = index + shift
+    new_char = alphabet[new_index]
+    print('char:', char, 'new char:', new_char)
+```
+**Key Points:**
+- encrypted_text = '' creates an empty string container
+- This variable will gradually build the encrypted message
+- Empty string '' is like a blank canvas to paint on
+- Essential for collecting all encrypted characters into one result
+
+---
+
+## Step 37: Building Encrypted Text
+
+**Definition:**  
+Storing each encrypted character in the encrypted_text variable and tracking the progress.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    index = alphabet.find(char)    
+    new_index = index + shift
+    encrypted_text = alphabet[new_index]
+    print('char:', char, 'encrypted text:', encrypted_text)
+```
+```
+char: h encrypted text: k
+char: e encrypted text: h
+char: l encrypted text: o
+char: l encrypted text: o
+char: o encrypted text: r
+char:   encrypted text: c
+char: w encrypted text: z
+char: o encrypted text: r
+char: r encrypted text: u
+char: l encrypted text: o
+char: d encrypted text: g
+```
+**Key Points:**
+- encrypted_text now stores the current encrypted character
+- BUT it's overwriting each time instead of building up
+- Notice encrypted text: shows only one character at a time
+- We need to append rather than replace (next step)
+- Space character surprisingly worked (gave 'c') due to index calculation
+
+---
+
+## Step 38: Building the Encrypted String
+
+**Definition:**  
+Appending each encrypted character to build the complete encrypted message.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    index = alphabet.find(char)
+    new_index = index + shift
+    encrypted_text = encrypted_text + alphabet[new_index]
+    print('char:', char, 'encrypted text:', encrypted_text)
+```
+```
+char: h encrypted text: k
+char: e encrypted text: kh
+char: l encrypted text: kho
+char: l encrypted text: khoo
+char: o encrypted text: khoor
+char:   encrypted text: khooc
+char: w encrypted text: khoocz
+char: o encrypted text: khooczr
+char: r encrypted text: khooczru
+char: l encrypted text: khooczruo
+char: d encrypted text: khooczruog
+```
+**Key Points:**
+- encrypted_text + alphabet[new_index] appends instead of replacing
+- Now builds the complete encrypted string step by step
+- Still has the space bug - space became 'c' in the output
+- Can see the encryption growing: k → kh → kho → khoo → khoor → etc.
+
+---
+
+## Step 39: Using += Operator
+
+**Definition:**  
+Using the addition assignment operator `+=` to append characters more efficiently.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    index = alphabet.find(char)
+    new_index = index + shift
+    encrypted_text += alphabet[new_index]
+    print('char:', char, 'encrypted text:', encrypted_text)
+```
+```
+char: h encrypted text: k
+char: e encrypted text: kh
+char: l encrypted text: kho
+char: l encrypted text: khoo
+char: o encrypted text: khoor
+char:   encrypted text: khoorc
+char: w encrypted text: khoorcz
+char: o encrypted text: khoorczr
+char: r encrypted text: khoorczru
+char: l encrypted text: khoorczruo
+char: d encrypted text: khoorczruog
+```
+**Key Points:**
+- encrypted_text += alphabet[new_index] is shorthand for encrypted_text = encrypted_text + alphabet[new_index]
+- Same functionality, cleaner code
+- Space bug still present: space → 'c' in "khoorc"
+- Building encrypted string: k → kh → kho → khoo → khoor → khoorc → etc.
+
+---
+
+## Step 40: Using Comparison Operators
+
+**Definition:**  
+Using the equality operator `==` to identify space characters in the text.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    print(char == ' ')
+    index = alphabet.find(char)
+    new_index = index + shift
+    encrypted_text += alphabet[new_index]
+    print('char:', char, 'encrypted text:', encrypted_text)
+```
+```
+False
+char: h encrypted text: k
+False
+char: e encrypted text: kh
+False
+char: l encrypted text: kho
+False
+char: l encrypted text: khoo
+False
+char: o encrypted text: khoor
+True
+char:   encrypted text: khoorc
+False
+char: w encrypted text: khoorcz
+False
+char: o encrypted text: khoorczr
+False
+char: r encrypted text: khoorczru
+False
+char: l encrypted text: khoorczruo
+False
+char: d encrypted text: khoorczruog
+```
+**Key Points:**
+- char == ' ' returns True only for space character
+- False for all letters, True for space (6th character)
+- This is the first step to fix the space bug
+- We can now detect spaces and handle them differently
+
+---
+
+## Step 41: Conditional Logic with if Statement
+
+**Definition:**  
+Using an if statement to detect space characters and take specific action when they are found.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    if char == ' ':
+        print('space!')
+    index = alphabet.find(char)
+    new_index = index + shift
+    encrypted_text += alphabet[new_index]
+    print('char:', char, 'encrypted text:', encrypted_text)
+```
+```
+char: h encrypted text: k
+char: e encrypted text: kh
+char: l encrypted text: kho
+char: l encrypted text: khoo
+char: o encrypted text: khoor
+space!
+char:   encrypted text: khoorc
+char: w encrypted text: khoorcz
+char: o encrypted text: khoorczr
+char: r encrypted text: khoorczru
+char: l encrypted text: khoorczruo
+char: d encrypted text: khoorczruog
+```
+**Key Points:**
+- if char == ' ': detects space characters
+- print('space!') only executes when a space is found
+- Space bug still present - space still becomes 'c' in encrypted text
+- Next step will likely fix the space handling
+
+---
+
+## Step 42: Handling Spaces in Encryption
+
+**Definition:**  
+Adding space characters directly to the encrypted text instead of encrypting them as letters.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    if char == ' ':
+        encrypted_text += char  
+    index = alphabet.find(char)
+    new_index = index + shift
+    encrypted_text += alphabet[new_index]
+    print('char:', char, 'encrypted text:', encrypted_text)
+```
+```
+char: h encrypted text: k
+char: e encrypted text: kh
+char: l encrypted text: kho
+char: l encrypted text: khoo
+char: o encrypted text: khoor
+char:   encrypted text: khoor c
+char: w encrypted text: khoor cz
+char: o encrypted text: khoor czr
+char: r encrypted text: khoor czru
+char: l encrypted text: khoor czruo
+char: d encrypted text: khoor czruog
+```
+**Key Points:**
+- encrypted_text += char adds the space character directly
+- Should preserve spaces in the encrypted message
+- But there's still a logic issue - both the if block AND the regular encryption run for spaces
+- We need to skip the regular encryption for spaces (next step)
+
+---
+
+## Step 43: Fixing Space Handling with Else Clause
+
+**Definition:**  
+Using an else clause to ensure encryption logic only runs for alphabet characters, preserving spaces in the encrypted text.
+
+**Example:**
+```python
+text = 'Hello World'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    if char == ' ':
+        encrypted_text += char
+    else:
+        index = alphabet.find(char)
+        new_index = index + shift
+        encrypted_text += alphabet[new_index]
+    print('char:', char, 'encrypted text:', encrypted_text)
+```
+```
+char: h encrypted text: k
+char: e encrypted text: kh
+char: l encrypted text: kho
+char: l encrypted text: khoo
+char: o encrypted text: khoor
+char:   encrypted text: khoor 
+char: w encrypted text: khoor z
+char: o encrypted text: khoor zr
+char: r encrypted text: khoor zru
+char: l encrypted text: khoor zruo
+char: d encrypted text: khoor zruog
+```
+**Key Points:**
+- Space bug fixed! Spaces now remain as spaces in encrypted text
+- Encryption logic only runs for alphabet characters (else clause)
+- Final print() call remains outside if/else to track progress
+- "khoor zruog" = "hello world" encrypted with shift 3
+
+---
+
+## Step 44: Discovering the Edge Case
+
+**Definition:**  
+Testing the cipher with text containing 'z' reveals an index out of range error when shifting beyond the alphabet.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    if char == ' ':
+        encrypted_text += char
+    else:
+        index = alphabet.find(char)
+        new_index = index + shift
+        encrypted_text += alphabet[new_index]
+    print('char:', char, 'encrypted text:', encrypted_text)
+```
+```char: h encrypted text: k
+char: e encrypted text: kh
+char: l encrypted text: kho
+char: l encrypted text: khoo
+char: o encrypted text: khoor
+char:   encrypted text: khoor 
+Traceback (most recent call last):
+  File "main.py", line 12, in <module>
+    encrypted_text += alphabet[new_index]
+IndexError: string index out of range
+```
+**Key Points:**
+- Error occurs at 'z' → position 25 → 25+3=28 → alphabet[28] doesn't exist
+- Alphabet only has positions 0-25 (26 letters)
+- We need wrap-around logic (z → c)
+
+---
 
 
 
