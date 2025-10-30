@@ -1214,6 +1214,298 @@ IndexError: string index out of range
 
 ---
 
+## Step 45: Implementing Wrap-Around with Modulo
 
+**Definition:**  
+Using modulo operator `%` to handle letters at the end of the alphabet by wrapping around to the beginning.
 
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    if char == ' ':
+        encrypted_text += char
+    else:
+        index = alphabet.find(char)
+        new_index = (index + shift) % 26
+        encrypted_text += alphabet[new_index]
+    print('char:', char, 'encrypted text:', encrypted_text)
+```
+```
+char: h encrypted text: k
+char: e encrypted text: kh
+char: l encrypted text: kho
+char: l encrypted text: khoo
+char: o encrypted text: khoor
+char:   encrypted text: khoor 
+char: z encrypted text: khoor c
+char: a encrypted text: khoor cd
+char: i encrypted text: khoor cdl
+char: r encrypted text: khoor cdlu
+char: a encrypted text: khoor cdlud
+```
+**Key Points:**
+- % 26 ensures result always stays between 0-25
+- 'z' (25) → (25+3)%26 = 28%26 = 2 → 'c' ✅
+- 'a' (0) → (0+3)%26 = 3%26 = 3 → 'd' ✅
+- No more IndexError! Wrap-around working perfectly
+- "Hello Zaira" → "khoor cdlud"
+
+---
+
+## Step 46: Dynamic Alphabet Length
+
+**Definition:**  
+Using `len(alphabet)` instead of hardcoded 26 to make the cipher flexible for different alphabet sizes.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    if char == ' ':
+        encrypted_text += char
+    else:
+        index = alphabet.find(char)
+        new_index = (index + shift) % len(alphabet)
+        encrypted_text += alphabet[new_index]
+    print('char:', char, 'encrypted text:', encrypted_text)
+```
+```
+char: h encrypted text: k
+char: e encrypted text: kh
+char: l encrypted text: kho
+char: l encrypted text: khoo
+char: o encrypted text: khoor
+char:   encrypted text: khoor 
+char: z encrypted text: khoor c
+char: a encrypted text: khoor cd
+char: i encrypted text: khoor cdl
+char: r encrypted text: khoor cdlu
+char: a encrypted text: khoor cdlud
+```
+**Key Points:**
+- % len(alphabet) instead of % 26
+- More flexible - works if alphabet changes size
+- Same output since len(alphabet) = 26
+- Prepares for adding numbers/symbols later
+
+---
+
+## Step 47: Final Output Cleanup
+
+**Definition:**  
+Moving the print statement outside the loop to display only the final encrypted result.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    if char == ' ':
+        encrypted_text += char
+    else:
+        index = alphabet.find(char)
+        new_index = (index + shift) % len(alphabet)
+        encrypted_text += alphabet[new_index]
+
+print('encrypted text:', encrypted_text)
+```
+```
+encrypted text: khoor cdlud
+```
+**Key Points:**
+- Print statement now outside the for loop
+- Shows only the final encrypted result
+- Cleaner output without step-by-step debugging
+- "Hello Zaira" → "khoor cdlud" (encrypted)
+
+---
+
+## Step 48: Displaying Original Text
+
+**Definition:**  
+Adding a print statement to show the original plain text alongside the encrypted result.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+encrypted_text = ''
+
+for char in text.lower():
+    if char == ' ':
+        encrypted_text += char
+    else:
+        index = alphabet.find(char)
+        new_index = (index + shift) % len(alphabet)
+        encrypted_text += alphabet[new_index]
+
+print('plain text:', text)
+print('encrypted text:', encrypted_text)
+```
+```
+plain text: Hello Zaira
+encrypted text: khoor cdlud
+```
+**Key Points:**
+- Shows both original and encrypted text for comparison
+- Clear user interface - easy to see the transformation
+- "Hello Zaira" → "khoor cdlud"
+- Professional presentation of results
+
+---
+
+## Step 49: Function Definition
+
+**Definition:**  
+Wrapping the entire Caesar cipher logic inside a reusable function called `caesar()`.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3  
+
+def caesar():
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in text.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + shift) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    
+    print('plain text:', text)
+    print('encrypted text:', encrypted_text)
+```
+**Key Points:**
+- Entire encryption logic now inside caesar() function
+- Function can be reused multiple times
+- Not yet called - just defined
+- All related code (variables, loops, prints) contained in function body
+- Step toward modular, reusable code
+
+---
+
+## Step 50: Understanding Variable Scope
+
+**Definition:**  
+Learning about variable scope - where variables can be accessed in your code.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+
+def caesar():
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'  # Local variable
+    encrypted_text = ''                       # Local variable
+
+    for char in text.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + shift) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', text)
+    print('encrypted text:', encrypted_text)
+
+print(alphabet)
+```
+```
+Traceback (most recent call last):
+  File "<main.py>", line 18, in <module>
+NameError: name 'alphabet' is not defined
+```
+**Key Points:**
+- Global variables: text, shift (defined outside functions)
+- Local variables: alphabet, encrypted_text (defined inside function)
+- Local variables cannot be accessed outside their function
+- Global variables can be accessed anywhere
+- This demonstrates function encapsulation
+
+---
+
+## Step 51: Fixing Scope Error
+
+**Definition:**  
+Removing the invalid print statement that tried to access a local variable from outside the function.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+
+def caesar():
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in text.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + shift) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    
+    print('plain text:', text)
+    print('encrypted text:', encrypted_text)
+```
+**Key Points:**
+- Removed print(alphabet) that caused NameError
+
+---
+
+## Step 52: Calling the Function
+
+**Definition:**  
+Executing the Caesar cipher function by calling it with parentheses `caesar()`.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+
+def caesar():
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in text.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + shift) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    
+    print('plain text:', text)
+    print('encrypted text:', encrypted_text)
+caesar()
+```
+```
+plain text: Hello Zaira
+encrypted text: khoor cdlud
+```
+**Key Points:**
+- caesar() executes the function
+- Function now actually runs and produces output
+- Reusable - can call multiple times
+- Encapsulated - all logic contained in function
+
+---
 
