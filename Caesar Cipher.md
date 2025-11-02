@@ -1509,3 +1509,163 @@ encrypted text: khoor cdlud
 
 ---
 
+## Step 53: Adding Function Parameters
+
+**Definition:**  
+Modifying the function to accept parameters, making it customizable and reusable for different inputs.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+
+def caesar(message, offset):
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in text.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + shift) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', text)
+    print('encrypted text:', encrypted_text)
+
+caesar()
+```
+```
+Traceback (most recent call last):
+  File "<main.py>", line 17, in <module>
+TypeError: caesar() missing 2 required positional arguments: 'message' and 'offset'
+```
+**Key Points:**
+- Function now declares parameters (message, offset)
+- Error occurs because function call doesn't provide arguments
+- Parameters make function customizable
+- Next step will fix the implementation
+
+---
+
+## Step 54: Renaming Variables to Match Parameters
+
+**Definition:**  
+Updating variable names inside the function to use the parameter names for consistency.
+
+**Example:**
+```python
+message = 'Hello Zaira'
+offset = 3
+
+def caesar(message, offset):
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_message = ''
+
+    for char in message.lower():
+        if char == ' ':
+            encrypted_message += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_message += alphabet[new_index]
+    print('plain message:', message)
+    print('encrypted message:', encrypted_message)
+
+caesar()
+```
+```
+Traceback (most recent call last):
+  File "<main.py>", line 17, in <module>
+TypeError: caesar() missing 2 required positional arguments: 'message' and 'offset'
+```
+**Key Points:**
+- Renamed text → message and shift → offset inside function
+- Still getting error - function call needs arguments
+- Function now uses parameters internally
+- External variables (message = 'Hello Zaira') are separate from parameters
+
+---
+
+## Step 55: Passing Arguments to Function
+
+**Definition:**  
+Calling the function with the required arguments to make it work properly.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+
+def caesar(message, offset):
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+
+caesar(text, shift)  # ← Added arguments
+```
+```
+plain text: Hello Zaira
+encrypted text: khoor cdlud
+```
+**Key Points:**
+- Function call now includes arguments: caesar(text, shift)
+- No more errors - function receives required parameters
+- text variable passed as message parameter
+- shift variable passed as offset parameter
+- Fully reusable - can encrypt different texts with different shifts
+
+---
+
+# Step 56: Multiple Function Calls
+
+**Definition:**  
+Demonstrating function reusability by calling the Caesar cipher with different shift values.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+
+def caesar(message, offset):
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+
+caesar(text, shift)
+caesar(text, 13)  # ← Second call with different shift
+```
+```
+plain text: Hello Zaira
+encrypted text: khoor cdlud
+plain text: Hello Zaira
+encrypted text: uryyb mnven
+```
+**Key Points:**
+- Same function, different results: shift 3 vs shift 13
+- Shift 3: "Hello Zaira" → "khoor cdlud"
+- Shift 13: "Hello Zaira" → "uryyb mnven" (ROT13 cipher)
+- Proves reusability - one function handles multiple encryption needs
+- ROT13 is a special case where encryption = decryption
+
+---
+
+
