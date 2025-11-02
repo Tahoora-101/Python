@@ -1626,7 +1626,7 @@ encrypted text: khoor cdlud
 
 ---
 
-# Step 56: Multiple Function Calls
+## Step 56: Multiple Function Calls
 
 **Definition:**  
 Demonstrating function reusability by calling the Caesar cipher with different shift values.
@@ -1664,8 +1664,44 @@ encrypted text: uryyb mnven
 - Shift 3: "Hello Zaira" → "khoor cdlud"
 - Shift 13: "Hello Zaira" → "uryyb mnven" (ROT13 cipher)
 - Proves reusability - one function handles multiple encryption needs
-- ROT13 is a special case where encryption = decryption
+- ROT13 (Rotate by 13 places) is a special case where encryption = decryption
 
 ---
+
+## Step 57: Preparing for Vigenère Cipher
+
+**Definition:**  
+Removing function calls to prepare for upgrading from Caesar cipher to Vigenère cipher.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+
+def caesar(message, offset):
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+
+## Function calls removed - ready for Vigenère upgrade
+```
+**Key Points:**
+- Caesar cipher: Same shift for every letter (less secure)
+- Vigenère cipher: Different shift for each letter (more secure)
+- Key: Determines the shifting pattern
+- Preparing to implement more complex encryption
+- Function remains defined but not called
+
+---
+
 
 
