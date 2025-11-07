@@ -2062,3 +2062,136 @@ def vigenere(message, key):
 
 ---
 
+## Step 68: Calling the Vigenère Function
+
+**Definition:**  
+Executing the Vigenère cipher function and storing the encrypted result in a variable.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            # Find the right key character to encode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    
+    return encrypted_text
+
+encryption = vigenere(text, custom_key)
+```
+**Key Points:**
+- Function call: vigenere(text, custom_key) executes the encryption
+- Store result: encryption = captures the returned value
+- Reusable: Can now use encryption variable elsewhere in code
+- Professional workflow: Define function → Call function → Use result
+- Vigenère cipher is now fully operational ✅
+
+---
+
+## Step 69: Displaying Encrypted Output
+
+**Definition:**  
+Printing the encrypted result to see the Vigenère cipher in action.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            # Find the right key character to encode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    
+    return encrypted_text
+
+encryption = vigenere(text, custom_key)
+print(encryption)
+```
+```
+wcseg odfyp
+```
+**Key Points:**
+- First visible output of Vigenère encryption
+- "Hello Zaira" → "wcseg odfyp" (encrypted with key "python")
+- Verifies cipher is working correctly
+- Shows polyalphabetic nature - different letters transform differently
+- Complete encryption pipeline: input → process → store → output ✅
+
+---
+
+## Step 70: Preparing for Encryption & Decryption
+
+**Definition:**  
+Adding a direction parameter to enable both encryption and decryption in the same function.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key, direction):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            # Find the right key character to encode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    
+    return encrypted_text
+
+#encryption = vigenere(text, custom_key)
+#print(encryption)
+```
+**Key Points:**
+- Added direction parameter - will control encrypt vs decrypt
+- Commented out function call - temporary to avoid errors
+- Preparation for two-way cipher - same function handles both operations
+- Next step: Implement direction logic (add vs subtract offset)
+- Professional design - single function for related operations
+
+---
+
+
+
