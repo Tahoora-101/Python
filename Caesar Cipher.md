@@ -1703,5 +1703,362 @@ def caesar(message, offset):
 
 ---
 
+## Step 58: Transitioning to Vigenère Cipher
 
+**Definition:**  
+Renaming the function and parameters to reflect the shift from Caesar cipher to Vigenère cipher.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+shift = 3
+
+def vigenere(message, key):
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+```
+**Key Points:**
+- Function name changed: caesar → vigenere
+- Parameter changed: offset → key
+- Key difference: Caesar uses number, Vigenère uses text key
+- Current code still Caesar logic - needs Vigenère implementation
+- Bug: offset variable not defined (should be using key)
+
+---
+
+## Step 59: Setting Up Vigenère Key
+
+**Definition:**  
+Replacing the numeric shift with a text key for Vigenère cipher implementation.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+```
+**Key Points:**
+- Deleted: shift = 3 (Caesar-style fixed shift)
+- Added: custom_key = 'python' (Vigenère text key)
+- Key purpose: Determines variable shifts for each letter
+- Current state: Still using Caesar logic with undefined offset
+
+---
+
+## Step 60: Initializing Key Index for Vigenère
+
+**Definition:**  
+Setting up a key index to track position in the key for Vigenère cipher's polyalphabetic substitution.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+```
+**Key Points:**
+Key Points:
+- key_index = 0 - tracks current position in the key
+- Purpose: Key repeats for long messages ("pythonpythonpython...")
+- Vigenère logic: Each letter uses different shift based on key character
+- Still using old logic - will replace offset with key-based shifting
+- Key index will increment for each character (except spaces)
+- Next step: Will implement Vigenère shifting using the key
+
+---
+
+## Step 61: Adding Code Comments
+
+**Definition:**  
+Using comments to document code logic and improve readability.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+```
+
+---
+
+## Step 62: Accessing Key Characters
+
+**Definition:**  
+Getting the current key character for Vigenère encryption using modulo to handle key repetition.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            key_char = key[key_index % len(key)]
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+```
+**Key Points:**
+- **key_char = key[key_index % len(key)]** - gets current key character
+- **Modulo ensures key repeats**: "pythonpythonpython..."
+- **Example**: For key="python", positions cycle: 0→p, 1→y, 2→t, 3→h, 4→o, 5→n, 6→p, 7→y, etc.
+- **Still using old logic** - will replace offset with key_char-based shift
+- **Key index not incrementing yet** - next step
+
+---
+
+## Step 63: Incrementing Key Index
+
+**Definition:**  
+Increasing the key index to move to the next key character for each letter in the message.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+```
+**Key Points:**
+- **key_index += 1** - moves to next key character
+- **Ensures each letter** gets a different shift amount
+- **Key cycles**: p→y→t→h→o→n→p→y→t→h...
+- **Still using old Caesar logic** - offset not defined
+- **Next step**: Replace offset with key-based shifting
+
+---
+
+## Step 64: Adding Encryption Comment
+
+**Definition:**  
+Documenting the key character selection process for Vigenère encryption.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            # Find the right key character to encode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+```
+**Key Points:**
+- Comment explains the purpose of key character selection
+- Documents Vigenère logic: each letter uses different key character
+- Improves code readability for complex algorithm
+- Still has bug - offset not defined (should use key_char)
+
+---
+
+## Step 65: Converting Key Character to Shift Amount
+
+**Definition:**  
+Using `.index()` method to convert key characters into numeric shift values for Vigenère encryption.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            # Find the right key character to encode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            index = alphabet.find(char)
+            offset = alphabet.index(key_char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+```
+**Key Points:**
+- offset = alphabet.index(key_char) - converts key character to shift amount
+- .index() vs .find(): Both find positions, but .index() raises ValueError if not found
+- Example: key_char='p' → offset=15, key_char='y' → offset=24
+- Now using actual Vigenère logic - different shift for each letter
+- fixed - offset now properly defined
+
+---
+
+## Step 66: Adding Documentation for Encryption Logic
+
+**Definition:**  
+Adding comments to document the offset calculation and encrypted letter generation process.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            # Find the right key character to encode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    print('plain text:', message)
+    print('encrypted text:', encrypted_text)
+```
+**Key Points:**
+- Comment documents the core Vigenère calculation steps
+- Offset: Numeric value from key character position
+- Encrypted letter: Result of shifting by offset
+- Clear documentation of the polyalphabetic process
+- Code is now fully functional Vigenère cipher
+
+---
+
+## Step 67: Returning Encrypted Text
+
+**Definition:**  
+Modifying the function to return the encrypted text instead of printing it, making the function reusable.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            # Find the right key character to encode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    
+    return encrypted_text
+```
+**Key Points:**
+- Removed print statements - no longer just displaying results
+- Added return encrypted_text - function now returns the encrypted value
+- Makes function reusable - output can be stored, processed, or used elsewhere
+- Professional coding practice - functions should return values, not just print
+- Vigenère cipher is now complete and reusable
+
+---
 
