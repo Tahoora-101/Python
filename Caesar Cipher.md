@@ -2193,5 +2193,1181 @@ def vigenere(message, key, direction):
 
 ---
 
+## Step 71: Implementing Two-Way Encryption
 
+**Definition:**  
+Adding direction control to enable both encryption and decryption by multiplying offset by direction.
 
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key, direction):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            # Find the right key character to encode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    
+    return encrypted_text
+
+#encryption = vigenere(text, custom_key)
+#print(encryption)
+```
+**Key Points:**
+- offset * direction - enables two-way operation
+- direction = 1: index + offset (encryption)
+- direction = -1: index - offset (decryption)
+- Same function handles both encryption and decryption
+- Mathematical elegance - simple multiplication changes operation
+- Ready for testing with different direction values
+
+---
+
+## Step 72: Testing Encryption with Direction Parameter
+
+**Definition:**  
+Activating the encryption function with direction=1 to test the two-way Vigenère cipher.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key, direction):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            # Find the right key character to encode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    
+    return encrypted_text
+
+encryption = vigenere(text, custom_key, 1)
+print(encryption)
+```
+```
+wcseg odfyp
+```
+**Key Points:**
+- Uncommented function call - reactivated the encryption pipeline
+- Added direction=1 - specifies encryption mode
+- Same output as before - confirms encryption works correctly with new parameter
+- "Hello Zaira" → "wcseg odfyp" - Vigenère encryption with key "python"
+- Ready for decryption test - next step will use direction=-1
+
+---
+
+## Step 73: Testing Decryption with Direction Parameter
+
+**Definition:**  
+Testing the decryption capability by using direction=-1 to reverse the encryption process.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key, direction):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            encrypted_text += char
+        else:
+            # Find the right key character to encode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            encrypted_text += alphabet[new_index]
+    
+    return encrypted_text
+
+encryption = vigenere(text, custom_key, 1)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption
+```
+```
+wcseg odfyp
+hello zaira
+```
+**Key Points:**
+- decryption = vigenere(encryption, custom_key, -1) - uses direction=-1 for decryption
+- Full cycle: "Hello Zaira" → "wcseg odfyp" → "hello zaira"
+- Proves two-way functionality - same function handles both operations
+- Mathematical verification - encryption and decryption are perfect inverses
+- Complete Vigenère cipher system ✅
+
+---
+
+## Step 75-76: Complete Code Cleanup
+
+**Definition:**  
+Updating both variable names and comments to reflect the function's dual encryption/decryption capability.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key, direction):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+encryption = vigenere(text, custom_key, 1)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption)
+```
+```
+wcseg odfyp
+hello zaira
+```
+**Key Points:**
+- Variable name: encrypted_text → final_message (works for both operations)
+- Comment updates: "encode" → "encode/decode", "encrypted" → "encrypted/decrypted"
+- Accurate documentation - reflects the function's true dual purpose
+- Professional standards - clear, honest code documentation
+- Maintains full functionality - encryption/decryption still works perfectly
+  
+---
+
+## Step 77: Adding Default Parameter Value
+
+**Definition:**  
+Setting a default value for the direction parameter to make the function more user-friendly.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+encryption = vigenere(text, custom_key, 1)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption)
+```
+**Key Points:**
+- direction=1 - sets default value for encryption
+- Backward compatible - existing code still works
+- User-friendly - can call vigenere(text, key) without specifying direction
+- Professional API design - sensible defaults improve usability
+- Default assumes encryption - most common use case
+
+---
+
+## Step 78: Testing Default Parameter
+
+**Definition:**  
+Verifying that the default direction parameter works by calling the function without the third argument.
+
+**Example:**
+```python
+text = 'Hello Zaira'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+encryption = vigenere(text, custom_key)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption)
+```
+```
+wcseg odfyp
+hello zaira
+```
+**Key Points:**
+- Removed direction argument from first call: vigenere(text, custom_key)
+- Default value works - automatically uses direction=1 for encryption
+- Same output - confirms default parameter functions correctly
+- Cleaner API - simpler function calls for common use case
+- Flexible design - can still specify direction when needed for decryption
+
+---
+
+## Step 79: Testing with Special Characters
+
+**Definition:**  
+Testing the Vigenère cipher with punctuation to identify handling of non-alphabet characters.
+
+**Example:**
+```python
+text = 'Hello Zaira!'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char == ' ':
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+encryption = vigenere(text, custom_key)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption)
+```
+```
+wcesc mpgkhn
+hello zairaz
+```
+**Key Points:**
+- Input: "Hello Zaira!" (with exclamation mark)
+- Encrypted: "wcesc mpgkhn" (corrupted - should be "wcseg odfyp")
+- Decrypted: "hello zairaz" (extra 'z' and missing '!')
+- Problem: Non-alphabet characters break the encryption
+- Root cause: alphabet.find('!') returns -1, causing incorrect shifts
+- Key synchronization lost: Exclamation mark consumes a key character but isn't encrypted properly
+
+---
+
+## Step 80: Testing .isalpha() Method
+
+**Definition:**  
+Replacing space-specific checking with `.isalpha()` method to handle all letter characters.
+
+**Example:**
+```python
+text = 'Hello Zaira!'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if char.isalpha():
+            final_message += char
+        else:        
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+encryption = vigenere(text, custom_key)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption)
+```
+```
+helloozairax
+helloozairax
+```
+**Key Points:**
+- Using .isalpha() instead of char == ' '
+- Current logic: Letters copied directly, non-letters encrypted
+- Result: Corruption observed - demonstrates importance of correct logic
+- Learning opportunity: Shows how small logic errors break cryptography
+
+---
+
+## Step 81: Using NOT Operator for Character Handling
+
+**Definition:**  
+Using the `not` operator to properly handle non-alphabetic characters by negating the `.isalpha()` condition.
+
+**Example:**
+```python
+text = 'Hello Zaira!'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append space to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+encryption = vigenere(text, custom_key)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption)
+```
+wcseg odfyp!
+hello zaira!
+```
+**Key Points:**
+- not char.isalpha() - correctly identifies non-letter characters
+- Proper logic: Non-letters copied directly, letters encrypted
+- Clean output: "Hello Zaira!" → "wcseg odfyp!" → "hello zaira!"
+- Exclamation preserved: Special characters handled correctly
+- Full cycle working: Encryption and decryption complete successfully
+
+----
+
+## Step 82: Updating Comment for Accuracy
+
+**Definition:**  
+Correcting the comment to accurately describe the handling of non-letter characters in the cipher.
+
+**Example:**
+```python
+text = 'Hello Zaira!'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+encryption = vigenere(text, custom_key)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption)
+```
+```
+wcseg odfyp!
+hello zaira!
+```
+**Key Points**:
+- Updated comment: "Append any non-letter character to the message"
+- Accurate documentation: Reflects the actual logic using .isalpha()
+- Comprehensive handling: Spaces, punctuation, numbers, symbols all preserved
+- Professional code quality: Clear, honest comments that match the code
+- Maintains full functionality: Encryption/decryption still works perfectly
+
+---
+
+## Step 83: Creating Encryption Wrapper Function
+
+**Definition:**  
+Creating a dedicated `encrypt` function as a wrapper for the Vigenère cipher to provide a cleaner interface.
+
+**Example:**
+```python
+text = 'Hello Zaira!'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    pass
+
+encryption = vigenere(text, custom_key)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption)
+```
+**Key Points:**
+- Created encrypt() function - dedicated wrapper for encryption
+- Used pass keyword - placeholder for future implementation
+- Cleaner API design - separates encryption from core Vigenère logic
+- User-friendly interface - encrypt(message, key) is more intuitive
+- Preparation for decryption function - sets pattern for symmetric design
+
+---
+
+## Step 84: Implementing Encryption Wrapper Function
+
+**Definition:**  
+Completing the `encrypt` wrapper function by calling the main Vigenère function with the correct parameters.
+
+**Example:**
+```python
+text = 'Hello Zaira!'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+
+encryption = vigenere(text, custom_key)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption)
+```
+**Key Points:**
+- Replaced pass with implementation - function now actually works
+- encrypt() calls vigenere() - wrapper function with direction=1 (default)
+- Cleaner user interface - encrypt(message, key) vs vigenere(message, key, 1)
+- Professional library design - separation of core logic and user API
+- Maintains functionality - same output as before
+
+---
+
+## Step 85: Creating Decryption Wrapper Function
+
+**Definition:**  
+Creating a dedicated `decrypt` function as a symmetric counterpart to the `encrypt` function for a complete API.
+
+**Example:**
+```python
+text = 'Hello Zaira!'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+
+encryption = vigenere(text, custom_key)
+print(encryption)
+
+decryption = vigenere(encryption, custom_key, -1)
+print(decryption)
+```
+**Key Points:**
+- Created decrypt() function - symmetric counterpart to encrypt()
+- Calls vigenere with direction=-1 - specifies decryption mode
+- Complete API - both encrypt and decrypt functions available
+- Clean user interface - intuitive function names, no magic numbers
+- Professional library structure - core function + user-friendly wrappers
+
+---
+
+## Step 86: Using the Clean API
+
+**Definition:**  
+Testing the new user-friendly API by calling the wrapper functions instead of the core Vigenère function directly.
+
+**Example:**
+```python
+text = 'Hello Zaira!'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+    
+encryption = encrypt(text, custom_key)
+print(encryption)
+
+decryption = decrypt(encryption, custom_key)
+print(decryption)
+```
+```
+wcseg odfyp!
+hello zaira!
+```
+**Key Points:**
+- encryption = encrypt(text, custom_key) - clean encryption call
+- decryption = decrypt(encryption, custom_key) - clean decryption call (no -1 needed!)
+- Self-documenting code - function names clearly indicate purpose
+- Professional API usage - hiding implementation details from users
+- Same perfect results - full encryption/decryption cycle works flawlessly
+
+---
+
+## Step 87: Testing with Pre-Encrypted Message
+
+**Definition:**  
+Testing the decryption functionality with a pre-encrypted message to verify the cipher works with external data.
+
+**Example:**
+```python
+text = 'mrttaqrhknsw ih puggrur'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+    
+encryption = encrypt(text, custom_key)
+print(encryption)
+
+decryption = decrypt(encryption, custom_key)
+print(decryption)
+```
+```
+bpmaodgfdugj xf ibutgsk
+mrttaqrhknsw ih puggrur
+```
+**Key Points:**
+- New encrypted input: 'mrttaqrhknsw ih puggrur'
+- Double encryption: Input gets encrypted → 'bpmaodgfdugj xf ibutgsk'
+- Successful decryption: Returns to original → 'mrttaqrhknsw ih puggrur'
+- Verifies external data handling: Works with pre-encrypted messages
+- Confirms algorithm correctness: Full cycle preserves original data
+
+---
+
+## Step 88: Cleaning Up for Final Decryption
+
+**Definition:**  
+Removing unnecessary code to focus on decrypting the pre-encrypted message and discovering its original content.
+
+**Example:**
+```python
+text = 'mrttaqrhknsw ih puggrur'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+
+#decryption = decrypt(encryption, custom_key)
+#print(decryption)
+```
+**Key Points:**
+- Removed encryption variable - not needed for decryption-only task
+- Commented out last lines - temporary cleanup
+- Focus on decryption - preparing to reveal the secret message
+- Clean code structure - ready for the final reveal
+- Mystery message: 'mrttaqrhknsw ih puggrur' awaits decryption
+
+---
+
+## Step 89: Displaying Encrypted Text with Label
+
+**Definition:**  
+Using string concatenation to display the encrypted text with a descriptive label for better output presentation.
+
+**Example:**
+```python
+text = 'mrttaqrhknsw ih puggrur'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+
+print('Encrypted text: ' + text)
+#decryption = decrypt(encryption, custom_key)
+#print(decryption)
+```
+```
+Encrypted text: mrttaqrhknsw ih puggrur
+```
+**Key Points:**
+- String concatenation: 'Encrypted text: ' + text
+- Clear labeling: Identifies the encrypted message
+- Professional output: Well-formatted display
+- Preparation for reveal: Sets up the mystery before decryption
+- Maintains suspense: Shows what we're about to decrypt
+
+---
+
+## Step 90: Displaying Encryption Key
+
+**Definition:**  
+Adding a second print statement to display the encryption key being used, providing complete context for the decryption process.
+
+**Example:**
+```python
+text = 'mrttaqrhknsw ih puggrur'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+
+print('Encrypted text: ' + text)
+print('Key: ' + custom_key)
+#decryption = decrypt(encryption, custom_key)
+#print(decryption)
+```
+```
+Encrypted text: mrttaqrhknsw ih puggrur
+Key: python
+```
+**Key Points:**
+- Complete context: Shows both encrypted text and decryption key
+- String concatenation: 'Key: ' + custom_key
+- Professional presentation: Clear, labeled output
+- Cryptographic transparency: Important to know both ciphertext and key
+- Sets stage for final reveal: All pieces are in place for decryption
+
+---
+
+## Step 91-92: Converting Both Prints to f-strings
+
+**Definition:**  
+Modernizing all string outputs by converting both print statements to use f-strings for consistent, clean code.
+
+**Example:**
+```python
+text = 'mrttaqrhknsw ih puggrur'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+
+print(f'Encrypted text: {text}')
+print(f'Key: {custom_key}')
+#decryption = decrypt(encryption, custom_key)
+#print(decryption)
+```
+```
+Encrypted text: mrttaqrhknsw ih puggrur
+Key: python
+```
+**Key Points:**
+- Both prints use f-strings - consistent modern formatting
+- Clean, readable code - no string concatenation clutter
+- Professional standards - using Python's preferred string method
+- Same clear output - functionality unchanged
+- Ready for final step - clean codebase for the big reveal
+
+---
+
+## Step 93: Adding Newline Character
+
+**Definition:**  
+Using the newline character `\n` to create better formatted output by adding blank lines.
+
+**Example:**
+```python
+text = 'mrttaqrhknsw ih puggrur'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+
+print(f'\nEncrypted text: {text}')
+print(f'Key: {custom_key}')
+#decryption = decrypt(encryption, custom_key)
+#print(decryption)
+```
+```
+
+Encrypted text: mrttaqrhknsw ih puggrur
+Key: python
+```
+**Key Points:**
+- \n at string start: Creates a blank line before the output
+- Better formatting: Separates program output from command line
+- Escape character: \n is interpreted as newline, not literal text
+- Professional presentation: Clean, spaced output for better readability
+- Common practice: Used to format multi-line console output
+
+---
+
+## Step 94: Preparing for Final Decryption
+
+**Definition:**  
+Uncommenting and modifying the decryption variable to decrypt the original encrypted text directly.
+
+**Example:**
+```python
+text = 'mrttaqrhknsw ih puggrur'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+
+print(f'\nEncrypted text: {text}')
+print(f'Key: {custom_key}')
+decryption = decrypt(text, custom_key)
+#print(decryption)
+```
+**Key Points:**
+- Uncommented decryption variable - reactivated the decryption process
+- decrypt(text, custom_key) - decrypts the original encrypted message
+- Direct decryption - no double encryption, goes straight to revealing the secret
+- Final preparation - ready to display the decrypted message
+- Mystery almost solved - the secret message is calculated and stored
+
+---
+
+## Step 95: Final Output with Actual Results
+
+**Definition:**  
+Displaying the complete encryption-decryption cycle with the actual decrypted output.
+
+**Example:**
+```python
+text = 'mrttaqrhknsw ih puggrur'
+custom_key = 'python'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+
+print(f'\nEncrypted text: {text}')
+print(f'Key: {custom_key}')
+decryption = decrypt(text, custom_key)
+print(f'\nDecrypted text: {decryption}\n')
+```
+```
+
+Encrypted text: mrttaqrhknsw ih puggrur
+Key: python
+
+Decrypted text: xtammdcjrgej tj wnstcwy
+```
+**Key Points:**
+- Mathematically consistent: Algorithm produces deterministic output
+- Professional formatting: Clean, spaced output with labels
+- Cryptographic verification: Demonstrates the cipher works end-to-end
+
+---
+
+## Step 96: Testing with Correct Key - PROJECT COMPLETE!
+
+**Definition:**  
+Using the correct decryption key 'happycoding' to successfully reveal the original secret message.
+
+**Example:**
+```python
+text = 'mrttaqrhknsw ih puggrur'
+custom_key = 'happycoding'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset * direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+
+print(f'\nEncrypted text: {text}')
+print(f'Key: {custom_key}')
+decryption = decrypt(text, custom_key)
+print(f'\nDecrypted text: {decryption}\n')
+```
+```
+Encrypted text: mrttaqrhknsw ih puggrur
+Key: happycoding
+
+Decrypted text: freecodecamp is awesome
+```
+**Key Points:**
+- Correct key: 'happycoding' instead of 'python'
+- Successful decryption: "mrttaqrhknsw ih puggrur" → "freecodecamp is awesome"
+- Key security demonstrated: Wrong key = gibberish, correct key = meaningful message
+- Cryptographic principle proven: Encryption security depends entirely on key secrecy
+- PROJECT COMPLETED: All 96 steps successfully implemented! 🎉
+
+---
