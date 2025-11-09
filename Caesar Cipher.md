@@ -2891,7 +2891,7 @@ Testing the decryption functionality with a pre-encrypted message to verify the 
 
 **Example:**
 ```python
-text = 'mrttaqrhknsw ih puggrur'
+text = 'josxli wv nht'
 custom_key = 'python'
 
 def vigenere(message, key, direction=1):
@@ -2929,12 +2929,12 @@ print(decryption)
 ```
 ```
 bpmaodgfdugj xf ibutgsk
-mrttaqrhknsw ih puggrur
+josxli wv nht
 ```
 **Key Points:**
-- New encrypted input: 'mrttaqrhknsw ih puggrur'
+- New encrypted input: 'josxli wv nht'
 - Double encryption: Input gets encrypted → 'bpmaodgfdugj xf ibutgsk'
-- Successful decryption: Returns to original → 'mrttaqrhknsw ih puggrur'
+- Successful decryption: Returns to original → 'josxli wv nht'
 - Verifies external data handling: Works with pre-encrypted messages
 - Confirms algorithm correctness: Full cycle preserves original data
 
@@ -2947,7 +2947,7 @@ Removing unnecessary code to focus on decrypting the pre-encrypted message and d
 
 **Example:**
 ```python
-text = 'mrttaqrhknsw ih puggrur'
+text = 'josxli wv nht'
 custom_key = 'python'
 
 def vigenere(message, key, direction=1):
@@ -2985,7 +2985,7 @@ def decrypt(message, key):
 - Commented out last lines - temporary cleanup
 - Focus on decryption - preparing to reveal the secret message
 - Clean code structure - ready for the final reveal
-- Mystery message: 'mrttaqrhknsw ih puggrur' awaits decryption
+- Mystery message: 'josxli wv nht' awaits decryption
 
 ---
 
@@ -2996,7 +2996,7 @@ Using string concatenation to display the encrypted text with a descriptive labe
 
 **Example:**
 ```python
-text = 'mrttaqrhknsw ih puggrur'
+text = 'josxli wv nht'
 custom_key = 'python'
 
 def vigenere(message, key, direction=1):
@@ -3031,7 +3031,7 @@ print('Encrypted text: ' + text)
 #print(decryption)
 ```
 ```
-Encrypted text: mrttaqrhknsw ih puggrur
+Encrypted text: josxli wv nht
 ```
 **Key Points:**
 - String concatenation: 'Encrypted text: ' + text
@@ -3049,7 +3049,7 @@ Adding a second print statement to display the encryption key being used, provid
 
 **Example:**
 ```python
-text = 'mrttaqrhknsw ih puggrur'
+text = 'josxli wv nht'
 custom_key = 'python'
 
 def vigenere(message, key, direction=1):
@@ -3085,7 +3085,7 @@ print('Key: ' + custom_key)
 #print(decryption)
 ```
 ```
-Encrypted text: mrttaqrhknsw ih puggrur
+Encrypted text: josxli wv nht
 Key: python
 ```
 **Key Points:**
@@ -3104,7 +3104,7 @@ Modernizing all string outputs by converting both print statements to use f-stri
 
 **Example:**
 ```python
-text = 'mrttaqrhknsw ih puggrur'
+text = 'josxli wv nht'
 custom_key = 'python'
 
 def vigenere(message, key, direction=1):
@@ -3140,7 +3140,7 @@ print(f'Key: {custom_key}')
 #print(decryption)
 ```
 ```
-Encrypted text: mrttaqrhknsw ih puggrur
+Encrypted text: josxli wv nht
 Key: python
 ```
 **Key Points:**
@@ -3159,7 +3159,7 @@ Using the newline character `\n` to create better formatted output by adding bla
 
 **Example:**
 ```python
-text = 'mrttaqrhknsw ih puggrur'
+text = 'josxli wv nht'
 custom_key = 'python'
 
 def vigenere(message, key, direction=1):
@@ -3196,7 +3196,7 @@ print(f'Key: {custom_key}')
 ```
 ```
 
-Encrypted text: mrttaqrhknsw ih puggrur
+Encrypted text: josxli wv nht
 Key: python
 ```
 **Key Points:**
@@ -3215,7 +3215,7 @@ Uncommenting and modifying the decryption variable to decrypt the original encry
 
 **Example:**
 ```python
-text = 'mrttaqrhknsw ih puggrur'
+text = 'josxli wv nht'
 custom_key = 'python'
 
 def vigenere(message, key, direction=1):
@@ -3266,7 +3266,7 @@ Displaying the complete encryption-decryption cycle with the actual decrypted ou
 
 **Example:**
 ```python
-text = 'mrttaqrhknsw ih puggrur'
+text = 'josxli wv nht'
 custom_key = 'python'
 
 def vigenere(message, key, direction=1):
@@ -3303,10 +3303,10 @@ print(f'\nDecrypted text: {decryption}\n')
 ```
 ```
 
-Encrypted text: mrttaqrhknsw ih puggrur
+Encrypted text: josxli wv nht
 Key: python
 
-Decrypted text: xtammdcjrgej tj wnstcwy
+Decrypted text: rmwpbt xq ybb
 ```
 **Key Points:**
 - Mathematically consistent: Algorithm produces deterministic output
@@ -3322,7 +3322,7 @@ Using the correct decryption key 'happycoding' to successfully reveal the origin
 
 **Example:**
 ```python
-text = 'mrttaqrhknsw ih puggrur'
+text = 'josxli wv nht'
 custom_key = 'happycoding'
 
 def vigenere(message, key, direction=1):
@@ -3358,14 +3358,14 @@ decryption = decrypt(text, custom_key)
 print(f'\nDecrypted text: {decryption}\n')
 ```
 ```
-Encrypted text: mrttaqrhknsw ih puggrur
+Encrypted text: josxli wv nht
 Key: happycoding
 
-Decrypted text: freecodecamp is awesome
+Decrypted text: coding is fun
 ```
 **Key Points:**
 - Correct key: 'happycoding' instead of 'python'
-- Successful decryption: "mrttaqrhknsw ih puggrur" → "freecodecamp is awesome"
+- Successful decryption: "josxli wv nht" → "coding is fun"
 - Key security demonstrated: Wrong key = gibberish, correct key = meaningful message
 - Cryptographic principle proven: Encryption security depends entirely on key secrecy
 - PROJECT COMPLETED: All 96 steps successfully implemented! 🎉
