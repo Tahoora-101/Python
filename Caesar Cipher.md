@@ -2933,7 +2933,7 @@ josxli wv nht
 ```
 **Key Points:**
 - New encrypted input: 'josxli wv nht'
-- Double encryption: Input gets encrypted → 'bpmaodgfdugj xf ibutgsk'
+- Double encryption: Input gets encrypted → 'ymlezv lt goh'
 - Successful decryption: Returns to original → 'josxli wv nht'
 - Verifies external data handling: Works with pre-encrypted messages
 - Confirms algorithm correctness: Full cycle preserves original data
