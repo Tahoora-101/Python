@@ -50,6 +50,10 @@ For a brief overview of how the ciphers work:
 ### 📚 **Deep Learning** (30+ minute study)  
 For the complete implementation journey:
 [96-Step Detailed Documentation](./detailed_documentation/caesar_vigenere_96_steps.md)
+
+### 🔬 **Code Examination**
+Study the actual implementation:
+[cipher.py](./cipher.py)
 ```
 
 ---
@@ -70,6 +74,7 @@ For the complete implementation journey:
 
 ## Project Structure
 project/
+├── cipher.py # Main implementation
 ├── detailed_documentation/ # 96-step learning journey
 ├── quick_reference/ # TL;DR explanations
 └── README.md # You are here!
