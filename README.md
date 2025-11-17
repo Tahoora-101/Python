@@ -45,15 +45,15 @@ decrypted = decrypt(encrypted, "key")
 
 ### 🚀 **Quick Understanding** (5-minute read)
 For a brief overview of how the ciphers work:
-[Quick Reference Guide](./quick_reference/cipher_quick_review.md)
+[Overview of Ciphers.md]
 
 ### 📚 **Deep Learning** (30+ minute study)  
 For the complete implementation journey:
-[96-Step Detailed Documentation](./detailed_documentation/caesar_vigenere_96_steps.md)
+[Detailed Documentation of Ciphers.md]
 
 ### 🔬 **Code Examination**
 Study the actual implementation:
-[cipher.py](./cipher.py)
+[cipher code.md]
 ```
 
 ---
@@ -74,8 +74,8 @@ Study the actual implementation:
 
 ## Project Structure
 project/
-├── cipher.py # Main implementation
-├── detailed_documentation/ # 96-step learning journey
-├── quick_reference/ # TL;DR explanations
+├── cipher code # Main implementation
+├── Detailed Documentation of Ciphers/ # 96-step learning journey
+├── Overview of Ciphers/ # TL;DR explanations
 └── README.md # You are here!
 ```
